@@ -61,14 +61,15 @@ nav a:hover {
   margin-bottom: 12px;
 }
 
+.hero-p {
+  font-size: 8px;
+  font-weight: bold;
+  padding-top: 5px;
+}
+
 .hero p {
   font-size: 17px;
   color: #4b5563;
-}
-.hero-p {
-  font-size: 17px;
-  font-weight: bold;
-  padding-top: 5px;
 }
 
 /* Tool Grid – Max 2 Columns */

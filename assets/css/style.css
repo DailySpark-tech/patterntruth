@@ -145,11 +145,6 @@ nav a:hover {
   text-align: center;
   font-size: 14px;
   color: #6b7280;
-  display: flex;
-  align-items: center;
-}
-.footer-link {
-  align-items: center;
   gap: 18px;
 }
 .site-footer a {

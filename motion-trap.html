@@ -205,6 +205,7 @@
     html += `
       <p class="meta-line">People who see this result usually disagree with at least one part of it.</p>
       <div class="share" onclick="share()">Share this pattern</div>
+      <div class="share secondary" onclick="goHome()">See other patterns</div>
     `;
 
     resultEl.innerHTML = html;
@@ -216,6 +217,9 @@
     navigator.clipboard.writeText(text);
     alert('Share text copied.');
   }
+  function goHome() {
+  window.location.href = '/pattern-zero/';
+}
 </script>
 
 </body>

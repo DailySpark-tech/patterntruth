@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Social Position Snapshot</title>
+
+  <meta property="og:title" content="Where Do You Rank?" />
+  <meta property="og:description" content="I didn’t expect this ranking." />
+  <meta property="og:type" content="website" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f0f0f;
+      color: #eaeaea;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .progress {
+      height: 3px;
+      background: #222;
+      margin-bottom: 32px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #6a6a6a;
+      transition: width 0.3s ease;
+    }
+
+    .question {
+      margin-bottom: 32px;
+    }
+
+    .question p {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .option {
+      display: block;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background: #222;
+    }
+
+    .result {
+      display: none;
+      margin-top: 40px;
+    }
+
+    .rank {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 20px 0;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #888;
+      margin-top: 24px;
+    }
+
+    .share {
+      margin-top: 30px;
+      padding: 14px;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .share:hover {
+      background: #222;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <h1>Where Do You Rank?</h1>
+
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="quiz">
+
+    <div class="question" data-score="1,2,3,5">
+      <p>When you consume something insightful, what usually happens next?</p>
+      <div class="option">I save it or mentally note it</div>
+      <div class="option">I feel satisfied that I understood it</div>
+      <div class="option">I discuss or share it</div>
+      <div class="option">I change one concrete behavior within 24 hours</div>
+    </div>
+
+    <div class="question" data-score="1,2,3,5">
+      <p>How would you describe your relationship with unfinished ideas?</p>
+      <div class="option">I have many — they represent potential</div>
+      <div class="option">I revisit them occasionally</div>
+      <div class="option">I abandon most and move on</div>
+      <div class="option">I eliminate or complete them before starting new ones</div>
+    </div>
+
+    <div class="question" data-score="1,2,3,5">
+      <p>When you feel stuck, what is your most natural response?</p>
+      <div class="option">Consume more content</div>
+      <div class="option">Wait for motivation</div>
+      <div class="option">Make small adjustments</div>
+      <div class="option">Reduce inputs and force constraints</div>
+    </div>
+
+    <div class="question" data-score="1,2,3,5">
+      <p>Looking at the last 30 days:</p>
+      <div class="option">I’ve thought deeply about improving</div>
+      <div class="option">I’ve learned several new things</div>
+      <div class="option">I’ve made inconsistent progress</div>
+      <div class="option">I produced a visible outcome</div>
+    </div>
+
+  </div>
+
+  <div class="result" id="result"></div>
+
+</div>
+
+<script>
+  const questions = document.querySelectorAll('.question');
+  const progressBar = document.getElementById('progressBar');
+  const resultEl = document.getElementById('result');
+
+  let current = 0;
+  let score = 0;
+
+  questions.forEach((q, qi) => {
+    const scores = q.dataset.score.split(',').map(Number);
+    const options = q.querySelectorAll('.option');
+
+    options.forEach((opt, oi) => {
+      opt.addEventListener('click', () => {
+        score += scores[oi];
+        q.style.display = 'none';
+        current++;
+        progressBar.style.width = (current / questions.length * 100) + '%';
+
+        if (current < questions.length) {
+          questions[current].style.display = 'block';
+        } else {
+          showResult(score);
+        }
+      });
+    });
+
+    if (qi !== 0) q.style.display = 'none';
+  });
+
+function getBand(rank) {
+  if (rank <= 1000) {
+    return "Rare behavioral range";
+  } else if (rank <= 3500) {
+    return "Uncommon behavioral range";
+  } else if (rank <= 6500) {
+    return "Typical behavioral range";
+  } else {
+    return "Common behavioral range";
+  }
+}
+  
+  function showResult(score) {
+    const maxScore = 20;
+    const rarity = score / maxScore;
+
+    // Rarer behavior → higher rank
+    const rank = Math.floor((1 - rarity) * 10000) + 1;
+
+    const paddedRank = rank.toString().padStart(4, '0');
+    const band = getBand(rank);
+
+    resultEl.innerHTML = `
+      <p>Out of 10,000 recent users, your behavioral pattern ranks at:</p>
+      <div class="rank">#${paddedRank}</div>
+      <p><strong>${band}</strong></p>
+      <p><em>Most people who see this ranking expected it to be much higher.</em></p>
+
+
+      <p class="meta">
+        This ranking is not based on intelligence, effort, or intent.<br/>
+        It reflects behavioral frequency compared to others.
+      </p>
+
+      <p class="meta">
+        Users ranked above you typically show one behavior difference.
+      </p>
+
+      <div class="share" onclick="share(${paddedRank})">Share this snapshot</div>
+    `;
+
+    resultEl.style.display = 'block';
+  }
+
+  function share(rank) {
+    const text =
+`I didn’t expect this ranking.
+
+Out of 10,000 people, this placed me at #${rank}.
+
+Check where you land: ${location.href}`;
+
+    navigator.clipboard.writeText(text);
+    alert('Share text copied.');
+  }
+</script>
+
+</body>
+</html>

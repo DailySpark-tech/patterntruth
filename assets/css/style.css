@@ -11,13 +11,14 @@ body {
   line-height: 1.6;
 }
 
-body {
-  transition: opacity 0.35s ease;
-}
-body.fade-out {
-  opacity: 0;
+.pattern-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.pattern-card.exiting {
+  opacity: 0.6;
+  transform: scale(0.98);
+}
 
 .container {
   width: 100%;

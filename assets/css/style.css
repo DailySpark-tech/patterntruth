@@ -37,7 +37,7 @@ body {
 }
 
 .pattern-card.exiting::after {
-  opacity: 1;
+  opacity: .5;
 }
 
 .pattern-card.exiting {

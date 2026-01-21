@@ -13,21 +13,24 @@ body {
 
 .pattern-card {
   cursor: pointer;
-  background: #ffffff;   /* or your current light card color */
+
+  /* Explicit starting colors */
+  background-color: #ffffff;
   color: inherit;
+
+  /* Transition MUST live here */
   transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease,
-    opacity 0.25s ease;
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.25s ease;
 }
 
 .pattern-card.exiting {
   background-color: #0f0f0f;
   color: #eaeaea;
-  opacity: 0.25;
   transform: scale(0.97);
 }
+
 
 .container {
   width: 100%;

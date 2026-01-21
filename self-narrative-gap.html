@@ -219,5 +219,68 @@ Check which pattern you’re in: ${location.href}`;
   
 </script>
 
+  <div class="chaosA" id="chaosA"></div>
+
+<script>
+// Generate all possible score combinations for 3x3x3 pattern
+function generateCombinations(scoresPerQuestion) {
+  const combinations = [];
+  for (let i = 0; i < scoresPerQuestion[0].length; i++) {
+    for (let j = 0; j < scoresPerQuestion[1].length; j++) {
+      for (let k = 0; k < scoresPerQuestion[2].length; k++) {
+        combinations.push([scoresPerQuestion[0][i], scoresPerQuestion[1][j], scoresPerQuestion[2][k]]);
+      }
+    }
+  }
+  return combinations;
+}
+
+// Calculate total score for each combination
+function totalScore(vec) {
+  return vec.reduce((a,b)=>a+b, 0);
+}
+
+// Assign band based on rank
+function getBand(rank, total) {
+  if(rank <= 3) return "Rare behavioral range";
+  else if(rank <= 9) return "Uncommon behavioral range";
+  else if(rank <= 18) return "Typical behavioral range";
+  else return "Common behavioral range";
+}
+
+// Inject Chaos A
+function showChaosA(userVector) {
+  const scoresPerQuestion = [
+    [0,1,2],  // Q1
+    [0,2,1],  // Q2 (responsible scoring)
+    [1,0,2]   // Q3
+  ];
+
+  const combinations = generateCombinations(scoresPerQuestion);
+  // Sort by total score descending
+  combinations.sort((a,b)=> totalScore(b) - totalScore(a));
+
+  // Find user rank
+  let rank = combinations.findIndex(vec => vec.join() === userVector.join()) + 1;
+
+  const band = getBand(rank, combinations.length);
+
+  const chaosEl = document.getElementById('chaosA');
+  chaosEl.innerHTML = `
+    <h2>📊 Social Position Snapshot</h2>
+    <p>Your behavioral rank within this pattern: <strong>#${rank} / 27</strong></p>
+    <p><strong>${band}</strong></p>
+    <p>Most users would not expect this position.</p>
+    <div class="share" onclick="share()">Share this snapshot</div>
+  `;
+}
+
+// Example usage: pass the user's selected scores as a vector
+// Suppose user chose options with scores: Q1=2, Q2=0, Q3=1
+showChaosA([2,0,1]);
+
+</script>
+
+
 </body>
 </html>

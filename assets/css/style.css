@@ -14,8 +14,7 @@ body {
 .pattern-card {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-.pattern-card.exiting {
+.pattern-card .exiting {
   opacity: 0.6;
   transform: scale(0.98);
 }

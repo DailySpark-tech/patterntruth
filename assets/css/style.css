@@ -42,7 +42,7 @@ body {
   z-index: 1;
 }
 .pattern-card.exiting::after {
-  opacity: 1;
+  opacity: .75;
 }
 
 .pattern-card.exiting {

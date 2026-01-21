@@ -101,3 +101,19 @@ function initMobileHeaderAdSwap() {
   });
 }
 
+
+
+  document.querySelectorAll('.pattern-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const url = this.href;
+
+      document.body.classList.add('fade-out');
+
+      setTimeout(() => {
+        window.location.href = url;
+      }, 350);
+    });
+  });
+

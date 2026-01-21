@@ -41,7 +41,7 @@ body {
 }
 
 .pattern-card.exiting {
-  color: #fff;
+  color: #eaeaea;
   transform: scale(0.97);
 }
 

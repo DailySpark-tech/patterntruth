@@ -13,16 +13,20 @@ body {
 
 .pattern-card {
   cursor: pointer;
+  background: #ffffff;   /* or your current light card color */
+  color: inherit;
   transition:
-    opacity 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
     transform 0.25s ease,
-    box-shadow 0.25s ease;
+    opacity 0.25s ease;
 }
 
 .pattern-card.exiting {
-  opacity: 0.55;
-  transform: scale(0.96);
-  box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.15) inset;
+  background-color: #0f0f0f;
+  color: #eaeaea;
+  opacity: 0.95;
+  transform: scale(0.97);
 }
 
 .container {

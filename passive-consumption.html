@@ -7,6 +7,7 @@
   <meta property="og:title" content="Which Pattern Is Controlling Your Attention?" />
   <meta property="og:description" content="This didn’t feel like a quiz. It labeled a pattern I didn’t want to see." />
   <meta property="og:type" content="website" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -92,7 +93,6 @@
       padding: 14px;
       background: #1a1a1a;
       border: 1px solid #2a2a2a;
-      border-radius: 3px;
       cursor: pointer;
       text-align: center;
     }
@@ -100,13 +100,7 @@
     .share:hover {
       background: #222;
     }
-    .share.secondary {
-  opacity: 0.7;
-}
-
-.share.secondary:hover {
-  opacity: 0.9;
-}
+    
   </style>
 </head>
 <body>
@@ -210,7 +204,6 @@
     html += `
       <p class="meta-line">People who see this result usually disagree with at least one part of it.</p>
       <div class="share" onclick="share()">Share this pattern</div>
-      <div class="share secondary" onclick="goHome()">See other patterns</div>
     `;
 
     resultEl.innerHTML = html;
@@ -222,9 +215,7 @@
     navigator.clipboard.writeText(text);
     alert('Share text copied.');
   }
-  function goHome() {
-  window.location.href = '/patterntruth/';
-}
+  
 </script>
 
 </body>

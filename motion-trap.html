@@ -81,12 +81,20 @@
       padding: 14px;
       background: #1a1a1a;
       border: 1px solid #2a2a2a;
+      border-radius: 3px;
       cursor: pointer;
       text-align: center;
     }
     .share:hover {
       background: #222;
     }
+    .share.secondary {
+  opacity: 0.7;
+}
+
+.share.secondary:hover {
+  opacity: 0.9;
+}
   </style>
 </head>
 
@@ -188,6 +196,7 @@
     html += `
       <p class="meta-line">People who see this result usually recognize part of it immediately — and question another part.</p>
       <div class="share" onclick="share()">Share this pattern</div>
+      <div class="share secondary" onclick="goHome()">See other patterns</div>
     `;
 
     resultEl.innerHTML = html;
@@ -199,6 +208,9 @@
     navigator.clipboard.writeText(text);
     alert('Share text copied.');
   }
+  function goHome() {
+  window.location.href = '/patterntruth/';
+}
 </script>
 
 </body>

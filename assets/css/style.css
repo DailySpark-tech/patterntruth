@@ -116,6 +116,7 @@ nav a:hover {
   max-width: 900px;
   margin: 0 auto;
   padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .tools-grid {
@@ -124,6 +125,7 @@ nav a:hover {
   gap: 1.5rem;
   max-width: 900px;
   margin: 0 auto;
+  padding-top: 15px;
   padding-bottom: 40px;
 }
 

@@ -111,12 +111,13 @@ nav a:hover {
   color: #4b5563;
 }
 
+/* Tool Grid – Max 2 Columns */
 .groups {
   max-width: 900px;
-  margin: 0 auto;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
-/* Tool Grid – Max 2 Columns */
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

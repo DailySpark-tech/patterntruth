@@ -166,10 +166,6 @@ nav a:hover {
   color: #555;
   transition: color 0.25s ease, transform 0.25s ease;
 }
-.patterns-no {
-  font-size: 12px;
-  opacity: .5;
-}
 
 /* Hover */
 .tool-card:hover {
